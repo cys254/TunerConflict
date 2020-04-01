@@ -144,4 +144,12 @@ The result should be empty when there is no tuner conflict.
 
 Sample implementation of booking and conflict resolution set in `Java` and `Go` are provided for convenience. 
 
+### 3.1 Java Implementations
 
+Several Java files are provided to begin with:
+1. *Booking.java*
+2. *ConflictResolutionSet.java*
+3. *TunerConflictResult.java*
+4. *TunerConflictResolver.java* is a template to fill in tuner conflict detection and resolution implementation.
+5. *TunerConflictResolverTest.java* for unit test
+ 
