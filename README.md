@@ -65,7 +65,7 @@ a new booking from 0 to 1 will result in tuner conflict.
 
 ### 2.5 Conflict Resolution Set
 
-**Conflict Resolution Set** is subset of existing bookings such that when *all* bookings in
+**Conflict Resolution Set** is subset of existing bookings such that after **all** bookings in
 the *Conflict Resolution Set* are deleted, the new booking can be made without tuner conflict.
 
 A conflict resolution set can have one or more bookings.
@@ -75,8 +75,8 @@ For example, if a PVR has one tuner, and two existing bookings are made from 0 t
 
 ### 2.6 Minimal Conflict Resolution Set
 
-A **Minimal Conflict Resolution Set** is a **Conflict Resolution Set** that
-none of its proper subset is a **Conflict Resolution Set**.
+A **Minimal Conflict Resolution Set** is a *Conflict Resolution Set* that
+none of its proper subset is a *Conflict Resolution Set*.
 
 That is, minimal conflict resolution set is smallest conflict resolution set.
 
@@ -85,22 +85,23 @@ That is, there can be more than one minimal conflict resolution set for a given 
 
 ### 2.7 Tuner Conflict Resolution Set
 
-**Tuner Conflict Resolution Set** is the set of all **Minimal Conflict Resolution Sets** for a given tuner conflict.
+**Tuner Conflict Resolution Set** is the set of all *Minimal Conflict Resolution Sets* for a given tuner conflict.
 
 When there is no tuner conflict, tuner conflict resolution set is an empty set.
 
 ### 2.8 Tuner Conflict Resolution
 **Tuner Conflict Resolution** is a process to generate tuner conflict resolution set for a given tuner conflict.
 That is:
-```cassandraql
-F: (total number of tuners, set of existing bookings, new booking to be made) -> tuner conflict resolution set
+```
+F: (total number of tuners, set of existing bookings, new booking to be made)
+    -> tuner conflict resolution set
 ```
 For example:
-```cassandraql
+```
 F: (1, {[0, 1]}, [0, 2]) -> {{[0, 1]}}
 ```
 A more complicate example:
-```cassandraql
+```
 F: (2, {[0,3],[2,5],[4,7],[6,9]}, [0,9])
     -> {{[0,3],[4,7]},{[2,5],[4,7]},{[2,5],[6,9]}}
 ```
@@ -109,6 +110,7 @@ The above example means that if there are two tuners and four existing bookings 
 2. 2 to 5
 3. 4 to 7
 4. 6 to 9
+
 Then in order to make a new booking from 0 to 9,
 there are three distinct ways to resolve tuner conflicts.
 1. delete existing bookings from 0 to 3 and from 4 to 7.
@@ -148,7 +150,7 @@ Sample implementation of booking and conflict resolution set in `Java` and `Go` 
 
 #### 3.1.1 Classes Already Implemented
 
-##### Booking
+##### 3.1.1.1 Booking
 A booking contains the following properties:
 - startTime
 - endTime
@@ -156,11 +158,11 @@ A booking contains the following properties:
 
 Two booking objects are considered different even if their properties are all same.
 
-##### ConflictResolutionSet
+##### 3.1.1.2 onflictResolutionSet
 Conflict resolution set is set of bookings implemented using Java ArrayList.
 It also has a priority that is defined as max priority of all bookings in the set.
 
-##### TunerConflictResult
+##### 3.1.1.3 TunerConflictResult
 Result of tuner conflict detection and resolution, it has two properties:
 - hasConflict as boolean
 - resolutions as array list of conflict resolution set
@@ -183,6 +185,7 @@ Use it to fill in the implementation of tuner conflict detection and resolution:
 Several unit test cases are provided in *TunerConflictResolverTest.java*
 
 ### 3.2 Go Implementation
+
 
 
  
