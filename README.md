@@ -146,10 +146,43 @@ Sample implementation of booking and conflict resolution set in `Java` and `Go` 
 
 ### 3.1 Java Implementations
 
-Several Java files are provided to begin with:
-1. *Booking.java*
-2. *ConflictResolutionSet.java*
-3. *TunerConflictResult.java*
-4. *TunerConflictResolver.java* is a template to fill in tuner conflict detection and resolution implementation.
-5. *TunerConflictResolverTest.java* for unit test
+#### 3.1.1 Classes Already Implemented
+
+##### Booking
+A booking contains the following properties:
+- startTime
+- endTime
+- priority
+
+Two booking objects are considered different even if their properties are all same.
+
+##### ConflictResolutionSet
+Conflict resolution set is set of bookings implemented using Java ArrayList.
+It also has a priority that is defined as max priority of all bookings in the set.
+
+##### TunerConflictResult
+Result of tuner conflict detection and resolution, it has two properties:
+- hasConflict as boolean
+- resolutions as array list of conflict resolution set
+
+#### 3.1.2 Task
+A template *TunerConflictResolver.java* is provided.
+Use it to fill in the implementation of tuner conflict detection and resolution:
+```
+    public TunerConflictResult resolve(int numberOfTuners, List<Booking> existingBookings, Booking newBooking) {
+        this.numberOfTuners = numberOfTuners;
+        this.result = new TunerConflictResult();
+
+        // Implement Tuner Conflict Detection and Resolution here
+...
+        return result;
+    }
+```
+
+#### 3.1.3 Test
+Several unit test cases are provided in *TunerConflictResolverTest.java*
+
+### 3.2 Go Implementation
+
+
  
